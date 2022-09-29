@@ -4,11 +4,14 @@ import 'package:weatherapp/controller/global_controller.dart';
 import 'package:get/get.dart';
 import 'package:weatherapp/model/weather_model.dart';
 import 'package:weatherapp/utils/custom_colors.dart';
+import 'package:weatherapp/widgets/details_widget.dart';
 
 import 'comfort_level.dart';
 
 class CurrentWeatherWidget extends StatelessWidget  {
   const CurrentWeatherWidget({Key? key}) : super(key: key);
+
+
 
 
 
@@ -78,51 +81,19 @@ class CurrentWeatherWidget extends StatelessWidget  {
 
         //more weather details - weather icon, weather description, wind speed, humidity,
 
-        //images onf windSpeed , cloud , humidity
+        //windSpeed , cloud , humidity
         Column(
+
           children: [
 
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                //windspeed
-                Container(
-                  height: 60,
-                  width: 60,
-                  padding: const EdgeInsets.all(8),
-                  decoration: BoxDecoration(
-                    color: CustomColors.cardColor,
-                    borderRadius: BorderRadius.circular(10),
 
-                  ),
-                  child: Image.asset('assets/windspeed.png'),
-                ),
+                DetailsWidget(imageLink: 'assets/windspeed.png', value: '${globalController.getWeatherData()?.current.windSpeed} Km/h'),
+                DetailsWidget(imageLink: 'assets/clouds.png', value: '${globalController.getWeatherData()?.current.cloudcover} %'),
+                DetailsWidget(imageLink: 'assets/humidity.png', value: '${globalController.getWeatherData()?.current.humidity} %'),
 
-                //clouds
-                Container(
-                  height: 60,
-                  width: 60,
-                  padding: const EdgeInsets.all(8),
-                  decoration: BoxDecoration(
-                    color: CustomColors.cardColor,
-                    borderRadius: BorderRadius.circular(10),
-
-                  ),
-                  child: Image.asset('assets/clouds.png'),
-                ),
-
-                //humidity
-                Container(
-                  height: 60,
-                  width: 60,
-                  padding: const EdgeInsets.all(8),
-                  decoration: BoxDecoration(
-                    color: CustomColors.cardColor,
-                    borderRadius: BorderRadius.circular(10),
-
-                  ),
-                  child: Image.asset('assets/humidity.png'),
-                ),
               ],
             ),
 
@@ -131,117 +102,22 @@ class CurrentWeatherWidget extends StatelessWidget  {
           ],
         ),
 
-        //values of windspeed,clouds,humidity
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: [
-            SizedBox(
-              height: 20,
-              width: 50,
-              child: Text(
-                '${globalController.getWeatherData()?.current.windSpeed} Km/h',
-                style: const TextStyle(
-                  fontSize: 12,
-                ),
 
-                 textAlign: TextAlign.center,
-              ),
-            ),
-
-            SizedBox(
-              height: 20,
-              width: 50,
-              child: Text(
-                '${globalController.getWeatherData()?.current.cloudcover} %',
-                style: const TextStyle(
-                  fontSize: 12,
-                ),
-
-                textAlign: TextAlign.center,
-              ),
-            ),
-
-            SizedBox(
-              height: 20,
-              width: 50,
-              child: Text(
-                '${globalController.getWeatherData()?.current.humidity} %',
-                style: const TextStyle(
-                  fontSize: 12,
-                ),
-
-                textAlign: TextAlign.center,
-              ),
-            ),
-          ],
-        ),
 
         const SizedBox(height: 30,),
 
 
-        //images of windDir, visibility
+
+        // windDir, visibility
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
-            //windDir
-            Container(
-              height: 60,
-              width: 60,
-              padding: const EdgeInsets.all(8),
-              decoration: BoxDecoration(
-                color: CustomColors.cardColor,
-                  borderRadius: BorderRadius.circular(10),
 
-              ),
-              child: Image.asset('assets/compass.png'),
-            ),
+            DetailsWidget(imageLink: 'assets/compass.png', value: '${globalController.getWeatherData()?.current.windDir} '),
+            DetailsWidget(imageLink: 'assets/visibility_img.png', value: '${globalController.getWeatherData()?.current.visibility} '),
 
-            //visibility
-            Container(
-              height: 60,
-              width: 60,
-              padding: const EdgeInsets.all(8),
-              decoration:  BoxDecoration(
-                color: CustomColors.cardColor,
-                borderRadius: BorderRadius.circular(10),
-
-              ),
-              child: Image.asset('assets/visibility_img.png'),
-            ),
           ],
-        ),
-
-        //values of winDirection, visibility
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: [
-            SizedBox(
-              height: 20,
-              width: 50,
-              child: Text(
-                '${globalController.getWeatherData()?.current.windDir} ',
-                style: const TextStyle(
-                  fontSize: 12,
-                ),
-
-                textAlign: TextAlign.center,
-              ),
-            ),
-
-            SizedBox(
-              height: 20,
-              width: 50,
-              child: Text(
-                '${globalController.getWeatherData()?.current.visibility} ',
-                style: const TextStyle(
-                  fontSize: 12,
-                ),
-
-                textAlign: TextAlign.center,
-              ),
-            ),
-          ],
-        ),
+         ),
 
         const Divider(
           height: 40,
